@@ -2,9 +2,11 @@ package com.example.demojpaservice;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.integration.dsl.channel.MessageChannels;
 import org.springframework.integration.handler.advice.AbstractRequestHandlerAdvice;
 import org.springframework.integration.handler.advice.ExpressionEvaluatingRequestHandlerAdvice;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageChannel;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -23,6 +25,11 @@ public class ApplicationConfig {
                 return result;
             }
         };
+    }
+
+    @Bean("estatement.move-to-cezar")
+    public MessageChannel moveToCezarChannel(){
+        return MessageChannels.direct().get();
     }
 
 //    @Bean
